@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- production version, optimized for size and speed 
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>--> 
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="styles.css" rel="stylesheet">
+    <title>Vue.js</title>
+</head>
+<body>
+
+    
+
+    <!--Root element-->
+    <div id='vue-app'>
+        <!--Uses template syntax-->
+        <h1>{{ greet('evening') }}</h1>
+        <p>Name: {{ name }}</p>
+        <p>Job: {{ job }}</p>
+        
+        <!-- vue-bind-* is a directive for when we want to bind data to an attribute  -->
+        <!-- shortcut is to use : ,e.g <a :href='*'>... -->
+        <a v-bind:href='website'>Website</a>
+
+        <input type="search" v-bind:value='name'>
+
+        <!-- directive to allow html to be set in instance data-->
+        <p v-html='websiteTag'></p>
+
+        <h1>Events</h1>
+        <p>{{ age }}</p>
+
+        <!-- v-on:* is the directive for events -->
+        <!-- event modifiers e.g once, so event only fired once-->
+        <button v-on:click.once='addAge(1)' class='btn btn-primary'>+1 Year</button>
+        <button v-on:click='subtractAge(1)' class='btn btn-primary'>-1 Year </button>
+
+        <button v-on:dblclick='addAge(10)' class='btn btn-primary'>+10 Years</button>
+        <button v-on:dblclick='subtractAge(10)' class='btn btn-primary'>-10 Years </button>
+
+            <!-- another v-on directive-->
+        <div id='canvas' v-on:mousemove='updateXY'>{{ x }}, {{ y }}</div>
+
+        <!-- also can use @: instead of v-on:-->
+
+        <!--using prevent event modifier-->
+        <a v-on:click.prevent=alertmsg href='https://google.com'>Google</a>
+
+    </div>
+    <script src='app.js'></script>
+</body>
+</html>
