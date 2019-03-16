@@ -11,7 +11,18 @@ new Vue({
         website: 'https:/youtube.com',
         websiteTag: '<a href="https:/youtube.com">Website 2</a>',
         x:0,
-        y:0
+        y:0,
+        available: false,
+        nearby: false,
+        error: false,
+        success: false,
+        characters:['Mario', 'Luigi', 'Bowser'],
+        ninjas:[
+            {name: 'Ryu', age:25},
+            {name: 'Yoshi', age:35},
+            {name: 'Ken', age:55},
+        ]
+
     },
     //i.e functions
     methods:{
@@ -33,6 +44,14 @@ new Vue({
         },
         alertmsg: function(event){
             alert('you clicked me');
+        }
+    },
+    computed:{
+        compClasses: function(){
+            return{
+                available: this.available,
+                nearby: this.nearby
+            }
         }
     }
 });
