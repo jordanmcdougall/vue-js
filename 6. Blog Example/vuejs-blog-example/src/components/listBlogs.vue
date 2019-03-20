@@ -1,10 +1,9 @@
 <template>
   <div v-theme:coulmn="'narrow'" id="show-blog">
-      <h1>All Blog Articles</h1>
+      <h1>List Blog Titles</h1>
       <input type="text" v-model="search" placeholder="search-blogs">
       <div v-for="b in filteredBlogs" v-bind:key="b" class="single-blog">
-            <router-link v-bind:to="'/blog/'+ b.id"><h1 v-rainbow>{{b.title | to-uppercase}}</h1></router-link>
-            <p>{{b.body | snippet}}</p>
+            <h1 v-rainbow>{{b.title | to-uppercase}}</h1>
       </div>
   </div>
 </template>
@@ -14,6 +13,14 @@ import searchMixin from '../mixins/searchMixin'
 export default {
   data () {
     return {
+        blog:{
+            title: "",
+            content:"",
+            categories:[],
+            author:"",
+        },
+        authors:['Jordan', 'Lauren','Lola', 'Skye'],
+        submitted: false,
         blogs:[],
         search:''
     }
@@ -27,13 +34,11 @@ export default {
           console.log(data);
           //Only want first 10
           this.blogs = data.body.slice(0,10);
-          console.log(data.id);
 
       }).catch(function(e){
           console.log(e);
       });
   },
- 
   //Example of local filter
   filters:{
     toUppercase(value) {
@@ -46,10 +51,9 @@ export default {
         bind(el,binding,vnode){
         //Generate Random Hexcode
         el.style.color = "#" + Math.random().toString().slice(2,8);
-  }
-      }
-  },
-  mixins:[searchMixin]
+            }
+        }
+    }, mixins:[searchMixin]
 }
 </script>
 
